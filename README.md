@@ -1,5 +1,7 @@
 # jenkins-groovy-scripts
 
+# Show all credentials
+
 Run script with command:
 
 ```bash
