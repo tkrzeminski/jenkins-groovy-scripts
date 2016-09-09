@@ -28,7 +28,7 @@ cat /opt/provision/credentials.xml | java -jar /var/lib/jenkins/.cli/jenkins-cli
 
 credentials.xml content:
 ```xml
-<com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl plugin="credentials@2.1.4">
+<com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>
   <scope>GLOBAL</scope>
   <id>jenkins-github-read-write-user</id>
   <description>Github user for RW operations</description>
