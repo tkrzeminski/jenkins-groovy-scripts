@@ -1,3 +1,4 @@
+import jenkins.model.*
 import com.cloudbees.plugins.credentials.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.plugins.credentials.domains.*
