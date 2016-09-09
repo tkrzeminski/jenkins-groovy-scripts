@@ -8,7 +8,10 @@ def showRow = { credentialType, secretId, username = null, password = null, desc
   println("${credentialType} : ".padLeft(20) + secretId?.padRight(38)+" | " +username?.padRight(20)+" | " +password?.padRight(40) + " | " +description)
 }
 
-Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore().getCredentials(Domain.global()).each{
+
+credentialsStore = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0]?.getStore()
+
+credentialsStore?.getCredentials(Domain.global()).each{
   if(it instanceof UsernamePasswordCredentialsImpl)
     showRow("user/password", it.id, it.username, it.password.getPlainText(),it.description)
   else if(it instanceof BasicSSHUserPrivateKey)
