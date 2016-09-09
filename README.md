@@ -16,6 +16,6 @@ cat /opt/provision/domain.xml | java -jar ./.cli/jenkins-cli.jar -s http://local
 domain.xml content:
 ```xml
 <com.cloudbees.plugins.credentials.domains.Domain>
-    <name>4FinaceIT</name>
+    <name>GithubCredentials</name>
 </com.cloudbees.plugins.credentials.domains.Domain>
 ```
