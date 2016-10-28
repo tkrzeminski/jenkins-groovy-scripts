@@ -36,3 +36,17 @@ credentials.xml content:
   <password>typicalSecretPassword</password>
 </com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>
 ```
+
+# Configuring CSP (Content Security Policy)
+- Quick reference guide: https://content-security-policy.com/
+- CSP evaluator: https://csp-evaluator.withgoogle.com/
+- Jenkins Wiki: https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy
+
+## Set CSP
+```groovy
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox 'allow-same-origin allow-scripts allow-top-navigation';default-src 'self'; img-src 'self'; style-src 'self'; child-src 'self'; frame-src 'self';")
+```
+## Show CSP value
+```groovy
+System.getProperty("hudson.model.DirectoryBrowserSupport.CSP")
+```
