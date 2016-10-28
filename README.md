@@ -44,7 +44,7 @@ credentials.xml content:
 
 ## Set CSP
 ```groovy
-System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox 'allow-same-origin allow-scripts allow-top-navigation';default-src 'self'; img-src 'self'; style-src 'self'; child-src 'self'; frame-src 'self';")
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-same-origin allow-scripts allow-top-navigation;script-src 'unsafe-inline' 'self';default-src 'self'; img-src self data: http: https:; style-src self unsafe-inline; child-src 'self'; frame-src 'self';")
 ```
 ## Show CSP value
 ```groovy
