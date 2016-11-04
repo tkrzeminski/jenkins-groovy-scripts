@@ -4,6 +4,7 @@ import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey
 import com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl
+import org.jenkinsci.plugins.plaincredentials.StringCredentials
 
 def showRow = { credentialType, secretId, username = null, password = null, description = null ->
   println("${credentialType} : ".padLeft(20) + secretId?.padRight(38)+" | " +username?.padRight(20)+" | " +password?.padRight(40) + " | " +description)
@@ -19,8 +20,10 @@ credentialsStore?.getCredentials(Domain.global()).each{
     showRow("ssh priv key", it.id, it.passphrase.getPlainText(), it.privateKeySource.getPrivateKey(), it.description )
   else if(it instanceof AWSCredentialsImpl)
     showRow("aws", it.id, it.accessKey, it.secretKey.getPlainText(),it.description )
+  else if(it instanceof StringCredentials)
+    showRow("secret text", it.id, it.secret.getPlainText(), it.description, '' )
   else
-    showRow("something else", id.id)
+    showRow("something else", it.id)
 }
 
 return
