@@ -5,7 +5,13 @@
 ## Run script which shows all credentials:
 
 ```bash
-java -jar /var/lib/jenkins/.cli/jenkins-cli.jar -s http://localhost:8080 groovy     /opt/groovyScripts/show-all-credentials.groovy
+java -jar /var/lib/jenkins/.cli/jenkins-cli.jar -s http://localhost:8080 groovy /opt/groovyScripts/show-all-credentials.groovy
+```
+
+## Show selected credentials as xml
+
+```bash
+java -jar /var/lib/jenkins/.cli/jenkins-cli.jar -s http://localhost:8080 get-credentials-as-xml "SystemCredentialsProvider::SystemContextResolver::jenkins" "(global)" CREDENTIAL ID
 ```
 
 ## Create credentials domain:
