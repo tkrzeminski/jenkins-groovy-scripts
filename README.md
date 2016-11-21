@@ -1,6 +1,22 @@
 # jenkins-groovy-scripts #
 
-## Show all credentials ##
+## Credentials ##
+
+### Decode hashed secret ###
+
+```groovy
+println(hudson.util.Secret.decrypt("ENCODED_VALUE"))
+```
+
+### Encode value ###
+
+```groovy
+println(hudson.util.Secret.fromString("alamakota").getEncryptedValue())
+```
+
+```bash
+echo 'println(hudson.util.Secret.fromString("loremIpsum").getEncryptedValue())' | java -jar ./.cli/jenkins-cli.jar -s http://localhost:8080/ groovy =
+```
 
 ### Run script which shows all credentials: ###
 
