@@ -25,11 +25,11 @@ credentialsStore?.getCredentials(domain).each{
   else if(it instanceof AWSCredentialsImpl)
     showRow("aws", it.id, it.accessKey, it.secretKey?.getPlainText(), it.description)
   else if(it instanceof StringCredentials)
-    showRow("secret text", it.id, it.secret?.getPlainText(), it.description)
+    showRow("secret text", it.id, it.secret?.getPlainText(), '', it.description)
   else if(it instanceof FileCredentialsImpl)
-    showRow("secret file", it.id, it.content?.text, it.description)
+    showRow("secret file", it.id, it.content?.text, '', it.description)
   else
-    showRow("something else", it.id)
+    showRow("something else", it.id, '', '', '')
 }
 
 return
