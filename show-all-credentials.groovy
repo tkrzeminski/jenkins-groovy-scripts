@@ -21,7 +21,7 @@ credentialsStore?.getCredentials(domain).each{
   if(it instanceof UsernamePasswordCredentialsImpl)
     showRow("user/password", it.id, it.username, it.password?.getPlainText(), it.description)
   else if(it instanceof BasicSSHUserPrivateKey)
-    showRow("ssh priv key", it.id, it.passphrase?.getPlainText(), it.privateKeySource?.getPrivateKey(), it.description)
+    showRow("ssh priv key", it.id, it.passphrase?.getPlainText(), it.privateKeySource?.getPrivateKey()?.getPlainText(), it.description)
   else if(it instanceof AWSCredentialsImpl)
     showRow("aws", it.id, it.accessKey, it.secretKey?.getPlainText(), it.description)
   else if(it instanceof StringCredentials)
