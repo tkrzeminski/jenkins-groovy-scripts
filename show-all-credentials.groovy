@@ -19,7 +19,7 @@ credentialsStore?.getCredentials(domain).each{
       showRow("user/password", it.id, it?.username, it?.password?.plainText, it.description)
       break
     case "com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey":
-      showRow("ssh priv key", it.id, it.privateKeySource?.privateKey?.plainText, it.passphrase.decrypt()?:"", it.description)
+      showRow("ssh priv key", it.id, it.privateKeySource?.privateKey?.plainText, it.passphrase?.decrypt()?:"", it.description)
       break
     case "com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl":
       showRow("aws", it.id, it.accessKey, it.secretKey?.plainText, it.description)
