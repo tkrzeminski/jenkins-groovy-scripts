@@ -27,6 +27,9 @@ credentialsStore?.getCredentials(domain).each{
     case "org.jenkinsci.plugins.plaincredentials.StringCredentials":
       showRow("secret text", it.id, it.secret?.plainText, '', it.description)
       break
+    case "org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl":
+      showRow("secret text", it.id, it.secret?.plainText, '', it.description)
+      break
     case "org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl":
       showRow("secret file", it.id, it.content?.text, '', it.description)
       break
