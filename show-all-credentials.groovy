@@ -56,7 +56,7 @@ def displayCredential(def domain, def cred) {
       showRow("secret file", domain, id, content?.text, '', description)
       break
         case "com.microsoft.azure.util.AzureCredentials":
-      showRow("azur", domain, id, subscriptionId, "${clientId}:${hudson.util.Secret.decrypt(clientSecret)}", description)
+      showRow("azure", domain, id, subscriptionId, "${clientId}:${hudson.util.Secret.decrypt(clientSecret)}", description)
       break
         case "org.jenkinsci.plugins.docker.commons.credentials.DockerServerCredentials":      
       showRow("docker", domain, id, clientCertificate, clientKey, description)
