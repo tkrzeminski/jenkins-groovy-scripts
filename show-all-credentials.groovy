@@ -9,13 +9,21 @@ retrieveCredentials()
 // retrieveCredentials('credId_1','credId_2')
   
 def retrieveCredentials(String... credIds) {
+  def crendentialsProviders = [:]
+
+  crendentialsProviders['System'] = Jenkins.instanceOrNull.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0]
   
-  def credentialsProvider = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0]
-  credentialsProvider.domainCredentials.each { domainCredentials ->
-    credentialsProvider.getCredentials(domainCredentials.domain).findAll{ credential ->
-      credIds.size() == 0 || credential.id in credIds
-    }.each { credential ->
-      displayCredential(domainCredentials.domain.name,credential)
+  crendentialsProviders['User'] = User.current().properties.find { k,v ->
+    k instanceof com.cloudbees.plugins.credentials.UserCredentialsProvider$UserCredentialsProperty$DescriptorImpl
+  }.value
+
+  crendentialsProviders.each { providerId, credentialsProvider ->
+    credentialsProvider.domainCredentials.each { domainCredentials ->
+      credentialsProvider.getCredentials(domainCredentials.domain).findAll{ credential ->
+        credIds.size() == 0 || credential.id in credIds
+      }.each { credential ->
+        displayCredential("${providerId}:${domainCredentials?.domain?.name?:'global'}",credential)
+      }
     }
   }
   
