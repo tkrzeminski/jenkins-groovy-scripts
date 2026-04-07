@@ -21,10 +21,9 @@ def retrieveCredentials(String... credIds) {
   
   // Get Folder credentials providers
   Jenkins.instance.allItems().findAll { item ->
-    item.getClass().name == 'com.cloudbees.hudson.plugins.folder.Folder' &&
-      item.properties.find { property ->
-        property.getClass().name == 'com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider$FolderCredentialsProperty'
-      }
+    item.properties.find { property ->
+      property.getClass().name == 'com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider$FolderCredentialsProperty'
+    }
   }.each { folder ->
     crendentialsProviders[(folder.fullName)]=folder.properties.find { property ->
         property.getClass().name == 'com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider$FolderCredentialsProperty'
@@ -73,7 +72,7 @@ def displayCredential(def domain, def cred) {
       showRow("secret file", domain, id, content?.text, '', description)
       break
         case "com.microsoft.azure.util.AzureCredentials":
-      showRow("azure", domain, id, subscriptionId, "${clientId}:${hudson.util.Secret.decrypt(clientSecret)}", description)
+      showRow("azure", domain, id, subscriptionId, "${clientId}:${clientSecret}", description)
       break
         case "org.jenkinsci.plugins.docker.commons.credentials.DockerServerCredentials":      
       showRow("docker", domain, id, clientCertificate, clientKey, description)
